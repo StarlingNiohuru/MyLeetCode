@@ -12,18 +12,9 @@ public:
         unordered_map<int, int> map = {{0, 1}};
         for (auto n:nums) {
             sum += n;
-            map[sum] += 1;
             if (map.find(sum - k) != map.end()) { res += map[sum - k]; }
+            map[sum] += 1;
         }
         return res;
     }
 };
-
-int main() {
-    Solution solution;
-    vector<int> nums = {3, 4, 7, 2, -3, 1, 4, 2};
-    int target = 7;
-    int result = solution.subarraySum(nums, target);
-    cout << result << endl;
-    return 0;
-}
