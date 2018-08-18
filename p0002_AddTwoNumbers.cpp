@@ -12,7 +12,8 @@ struct ListNode {
 class Solution {
 public:
     ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
-        ListNode res(0), *p = &res;
+        ListNode res(0), *p;
+        p = &res;
         int carry = 0;
         int sum;
         while (l1 || l2 || carry) {
