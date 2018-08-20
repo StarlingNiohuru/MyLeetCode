@@ -25,7 +25,6 @@ public:
             carry = temp / 10;
         }
         auto start_num = res.find_first_not_of('0');
-        cout << start_num << endl;
         if (res.size() > start_num) { return res.substr(start_num); }
         return "0";
     }
