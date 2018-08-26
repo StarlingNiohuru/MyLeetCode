@@ -46,10 +46,3 @@ public:
         return true;
     }
 };
-
-int main() {
-    Solution solution;
-    vector<string> words = {"bat", "tab", "cat", "xyx", ""};
-    vector<vector<int>> result = solution.palindromePairs(words);
-    return 0;
-}
