@@ -6,7 +6,7 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> combine(int n, int k) {
-        vector<vector<int>> res, tmp;
+        vector<vector<int>> res;
         int i = 0;
         vector<int> s(k, 0);
         s[0] = 1;
