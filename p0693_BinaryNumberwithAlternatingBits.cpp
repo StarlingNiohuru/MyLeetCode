@@ -10,4 +10,3 @@ public:
         return (b & (b + 1)) == 0;
     }
 };
-
