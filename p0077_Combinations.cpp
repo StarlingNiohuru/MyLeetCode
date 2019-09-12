@@ -7,6 +7,7 @@ class Solution {
 public:
     vector<vector<int>> combine(int n, int k) {
         vector<vector<int>> res;
+//        backtracking dfs implemented by iteration, s is stack, i is the index of stack
         int i = 0;
         vector<int> s(k, 0);
         s[0] = 1;
