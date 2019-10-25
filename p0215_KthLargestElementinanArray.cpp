@@ -1,12 +1,26 @@
 #include <vector>
 #include <utility>
+#include <queue>
 
 using namespace std;
+
+// Use heap. Time complexity is O(n*logk). Space complexity is O(logk).
+class Solution {
+public:
+    int findKthLargest(vector<int> &nums, int k) {
+        priority_queue<int, vector<int>, greater<>> pq;
+        for (int x:nums) {
+            pq.push(x);
+            if (pq.size() > k)pq.pop();
+        }
+        return pq.top();
+    }
+};
 
 // Use Quick Sort to divide the list into 2 parts. The element of front always greater than one of back.
 // If the length of front > k, find the back list by quick soft.Vice versa. Until accumulative front = k.
 // Average time complexity is O(n). But worst time complexity is O(n*n).
-class Solution {
+class Solution2 {
 public:
     int findKthLargest(vector<int> &nums, int k) {
         int n = -1, pivotIndex, left = 0, right = nums.size() - 1;
