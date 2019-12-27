@@ -4,8 +4,27 @@
 
 using namespace std;
 
-// Use a heap.similar to p0373. Time complexity is O(k*log(n)). But slow.
+// Use binary search. Every step we can count how many numbers less than mid and compare count with k.
+// Time complexity O(n*log(n)).
 class Solution {
+public:
+    int kthSmallest(vector<vector<int>> &matrix, int k) {
+        int lo = matrix[0][0], hi = matrix.back().back(), mid, j, count;
+        while (lo < hi) {
+            mid = lo + (hi - lo) / 2, count = 0, j = matrix[0].size() - 1;
+            for (int i = 0; i < matrix.size(); i++) {
+                while (j >= 0 && matrix[i][j] > mid) j--;
+                count += (j + 1);
+            }
+            if (count < k) lo = mid + 1;
+            else hi = mid;
+        }
+        return lo;
+    }
+};
+
+// Use a heap.similar to p0373. Time complexity is O(k*log(n)). But slow.
+class Solution2 {
 public:
     int kthSmallest(vector<vector<int>> &matrix, int k) {
         int res;
