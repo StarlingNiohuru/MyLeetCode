@@ -50,3 +50,21 @@ public:
         return res;
     }
 };
+
+// dfs recursion.
+class Solution3 {
+private:
+    void preorder(vector<int> &res, TreeNode *root) {
+        if (!root) return;
+        res.push_back(root->val);
+        preorder(res, root->left);
+        preorder(res, root->right);
+    }
+
+public:
+    vector<int> preorderTraversal(TreeNode *root) {
+        vector<int> res;
+        preorder(res, root);
+        return res;
+    }
+};
