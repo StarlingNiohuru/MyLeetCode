@@ -29,3 +29,22 @@ public:
         preorder(root, pre);
     }
 };
+
+// right-left-post-order dfs recursion. Time complexity is O(n), space complexity is O(1).
+class Solution2 {
+private:
+    void postorder(TreeNode *root, TreeNode *&nex) {
+        if (!root) return;
+        postorder(root->right, nex);
+        postorder(root->left, nex);
+        root->right = nex;
+        root->left = NULL;
+        nex = root;
+    }
+
+public:
+    void flatten(TreeNode *root) {
+        TreeNode *nex = NULL;
+        postorder(root, nex);
+    }
+};
