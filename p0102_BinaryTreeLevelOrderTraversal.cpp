@@ -36,3 +36,22 @@ public:
         return res;
     }
 };
+
+// dfs recursion.
+class Solution2 {
+private:
+    void level(vector<vector<int>> &res, TreeNode *root, int depth) {
+        if (!root) return;
+        if (res.size() == depth) res.emplace_back();
+        res[depth].push_back(root->val);
+        level(res, root->left, depth + 1);
+        level(res, root->right, depth + 1);
+    }
+
+public:
+    vector<vector<int>> levelOrder(TreeNode *root) {
+        vector<vector<int>> res;
+        level(res, root, 0);
+        return res;
+    }
+};
