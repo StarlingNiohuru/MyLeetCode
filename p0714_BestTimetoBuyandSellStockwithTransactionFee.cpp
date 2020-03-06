@@ -19,3 +19,16 @@ public:
         return dp[n - 1][0];
     }
 };
+
+// optimized way. Time complexity is O(n), space complexity is O(1).
+class Solution2 {
+public:
+    int maxProfit(vector<int> &prices, int fee) {
+        int cash = 0, hold = INT32_MIN;
+        for (int p:prices) {
+            cash = max(cash, hold + p);
+            hold = max(hold, cash - p - fee);
+        }
+        return cash;
+    }
+};
