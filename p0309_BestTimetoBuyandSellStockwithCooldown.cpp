@@ -24,3 +24,23 @@ public:
         return dp[n - 1][0];
     }
 };
+
+// dp iteration. rest[i], hold[i], sold[i] represent 3 different possible states of i-th day. We have:
+// rest[i] = max(rest[i - 1], sold[i - 1]); hold[i] = max(hold[i - 1], rest[i - 1] - prices[i]); sold[i] = hold[i - 1] + prices[i].
+// max(rest[n - 1], sold[n - 1]) is the answer. Time complexity is O(n), space complexity is O(n), which can be optimized to O(1).
+class Solution2 {
+public:
+    int maxProfit(vector<int> &prices) {
+        int n = prices.size();
+        if (n == 0) return 0;
+        vector<int> rest(n, 0);
+        vector<int> hold(n, -prices[0]);
+        vector<int> sold(n, INT32_MIN);
+        for (int i = 1; i < n; i++) {
+            rest[i] = max(rest[i - 1], sold[i - 1]);
+            hold[i] = max(hold[i - 1], rest[i - 1] - prices[i]);
+            sold[i] = hold[i - 1] + prices[i];
+        }
+        return max(rest[n - 1], sold[n - 1]);
+    }
+};
