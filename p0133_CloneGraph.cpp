@@ -33,7 +33,7 @@ public:
         unordered_map<Node *, Node *> visited;
         queue<Node *> q;
         q.push(node);
-        Node *res = new Node(node->val), *p = res;
+        Node *res = new Node(node->val);
         visited[node] = res;
         while (!q.empty()) {
             Node *curr = q.front();
