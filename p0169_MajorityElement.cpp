@@ -19,3 +19,18 @@ public:
         return res;
     }
 };
+
+// Boyer-Moore Majority Vote Algorithm. Since the majority > n/2, positive vote of majority must be >0 at last.
+// Time complexity is O(n). Space complexity is O(1).
+class Solution2 {
+public:
+    int majorityElement(vector<int> &nums) {
+        int res = 0, count = 0;
+        for (int num:nums) {
+            if (count == 0) res = num;
+            if (res == num) count++;
+            else count--;
+        }
+        return res;
+    }
+};
