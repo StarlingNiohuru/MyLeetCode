@@ -5,18 +5,18 @@
 
 using namespace std;
 
+// Hash table. When nums[i]=a is not in hashmap, insert map[a]=i.If we find nums[j]=b and map[target-b] in map, return {i,j}.
+// Time complexity is O(n), space complexity is O(n).
 class Solution {
 public:
     vector<int> twoSum(vector<int> &nums, int target) {
         vector<int> res(2);
         unordered_map<int, int> map;
-        for (auto it = nums.begin(); it != nums.end(); ++it) {
-            int i = it - nums.begin();
-            auto got = map.find(target - *it);
-            if (got == map.end()) {
-                map.insert({*it, i});
+        for (int i = 0; i < nums.size(); i++) {
+            if (map.find(target - nums[i]) == map.end()) {
+                map[nums[i]] = i;
             } else {
-                res[0] = map[target - *it];
+                res[0] = map[target - nums[i]];
                 res[1] = i;
                 return res;
             }
