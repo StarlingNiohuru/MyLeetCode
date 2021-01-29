@@ -17,15 +17,14 @@ public:
         dummy->next = head;
         ListNode *pre = dummy, *stop = dummy->next;
         while (stop) {
-            ListNode *first = stop, *last = stop;
-            for (int i = 0; i < k - 1 && last; i++) last = last->next;
+            ListNode *first = pre->next, *last = pre;
+            for (int i = 0; i < k && last; i++) last = last->next;
             if (last == NULL) break;
-            stop = last;
-            stop = stop->next;
+            stop = last->next;
             last->next = NULL;
-            pre->next = reverseList(first);
-            for (int i = 0; i < k; i++) pre = pre->next;
-            pre->next = stop;
+            pre->next = reverseList(first); //no need pre->next=NULL
+            first->next = stop;
+            pre = first;
         }
         return dummy->next;
     }
