@@ -3,6 +3,7 @@
 
 using namespace std;
 
+// KMP algorithm. hard to understand.Time complexity is O(m), space complexity is O(1).
 class Solution {
 public:
     int strStr(string haystack, string needle) {
@@ -28,6 +29,22 @@ public:
                 } else { i++; }
             }
             if (j == nsize) { return i - nsize; }
+        }
+        return -1;
+    }
+};
+
+// Brute force with 2 pointers.Time complexity is O((m-n)*n), space complexity is O(1).
+class Solution2 {
+public:
+    int strStr(string haystack, string needle) {
+        int m = haystack.size(), n = needle.size();
+        for (int i = 0; i < m - n + 1; i++) {
+            int j = 0;
+            for (; j < n; j++) {
+                if (haystack[i + j] != needle[j]) break;
+            }
+            if (j == n) return i;
         }
         return -1;
     }
